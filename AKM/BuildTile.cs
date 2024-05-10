@@ -71,8 +71,15 @@ namespace AKM
         {
             isAvailable = newValue;
         }
+        
 
+
+        /// <summary>
+        /// This method checks the house, hotel and price members, then builds a house/hotel.
+        /// </summary>
+        /// <returns> Whether the build was successful </returns>
         public bool BuildHouseOrHotel()
+
         {
             if (canBuild && owner.GetMoney() >= housePrice && houses < 3)
             {

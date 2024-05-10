@@ -299,7 +299,7 @@ namespace AKM
             }
         }
 
-        private void BuyHouseOrHotelButton_Clicked(object sender, EventArgs e)
+        private void BuyHouseOrHotelButton_Clicked(object sender, EventArgs e) // change HouseOrHotel to building
         {
             HideBuildMenu();
             if (gameManager.GetBoard()[gameManager.GetCurrentPlayer().GetIndex()] is BuildTile buildTile)
@@ -382,7 +382,7 @@ namespace AKM
             playerIconImage.Source = ImageSource.FromFile(imageSource);
         }
 
-        private void UpdatePlayerInfo()
+        private void UpdatePlayerInfo() //TODO update current player in the menu with Skip and Roll buttons
         {
             PlayerMoneyLabel.Text = gameManager.GetCurrentPlayer().GetMoney().ToString();
             PlayerNameLabel.Text = gameManager.GetCurrentPlayer().GetName();
@@ -452,6 +452,12 @@ namespace AKM
             HideUtilityMenu();
             RollDiceButton.IsVisible = true;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerIcon"></param>
+        /// <param name="player"></param>
+        /// <param name="gameManager"></param>
         private void MovePlayerOnBoard(Image playerIcon, Player player, GameManagement gameManager)
         {
             int StartingY = -160 + (10 * (Array.IndexOf(gameManager.GetPlayers(), player)));
@@ -525,5 +531,7 @@ namespace AKM
             MovePlayerOnBoard(MovingPlayer3, gameManager.GetPlayers()[2], gameManager);
             MovePlayerOnBoard(MovingPlayer4, gameManager.GetPlayers()[3], gameManager);
         }
+
+       
     }
 }

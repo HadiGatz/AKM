@@ -34,7 +34,11 @@
         }
 
         
-
+        /// <summary>
+        /// When clicked, it opens the file explorer and lets you pick an icon picture for your player
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void UploadButton_Clicked(object sender, EventArgs e)
         {
             var pickedFile = await FilePicker.PickAsync(new PickOptions
