@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AKM.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="AccentColor">#FF4081</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <Label x:Name="WelcomeLbl"
+               Grid.Row="0"
+               Text="Welcome!"
+               FontSize="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="{StaticResource PrimaryColor}" />
+
+        <Label Grid.Row="1"
+               Text="Please enter a player's name, then hit the 'Add Player' button"
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="{StaticResource PrimaryColor}" />
+
+        <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="10">
+            <Entry x:Name="NameEnt"
+                   FontSize="20"
+                   Placeholder="Player Name"
+                   HorizontalOptions="FillAndExpand"
+                   TextColor="{StaticResource PrimaryColor}" />
+            <Button x:Name="UploadButton"
+                    Text="Upload Image"
+                    FontSize="20"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Clicked="UploadButton_Clicked" />
+            <Button x:Name="CreatePlayerBtn"
+                    Text="Add Player"
+                    FontSize="20"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Clicked="CreatePlayerBtn_Clicked" />
+        </StackLayout>
+
+        <Button x:Name="StartBtn"
+                Grid.Row="3"
+                Text="Start"
+                FontSize="30"
+                TextColor="White"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Clicked="StartBtn_Clicked"/>
+    </Grid>
+
+</ContentPage>
