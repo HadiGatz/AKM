@@ -36,6 +36,11 @@ namespace AKM
             this.hotelPrice = hotelPrice;
             this.Color = Color;
         }
+        /// <summary>
+        /// Calculates the rent, using the members added on declaration.
+        /// 
+        /// </summary>
+        /// <returns>The rent a player who landed on the tile should pay.</returns>
         public int CalculateRent()
         {
             int rent;
@@ -97,21 +102,16 @@ namespace AKM
             }
             return false;
         }
-        public bool BuildHotel()
-        {
-            if (canBuild && owner.GetMoney() >= hotelPrice && houses == 4)
-            {
-                owner.SetMoney(owner.GetMoney() - hotelPrice);
-                hotels++;
-                houses = 0;
-                return true;
-            }
-            return false;
-        }
+    
         public string GetColor()
         {
             return Color;
         }
+        /// <summary>
+        /// After checking the player's money, it updates it's money and the tile's owner.
+        /// </summary>
+        /// <param name="player">Player who landed on the tile</param>
+        /// <returns>Whether the purchase was successful</returns>
         public bool BuyProperty(Player player)
         {
             if (player.GetMoney() >= price)
@@ -122,6 +122,13 @@ namespace AKM
             }
             return false;
         }
+        /// <summary>
+        /// Goes over the tiles nearby and checks if the owner of the current tile
+        /// owns all tiles from said colorset.
+        /// </summary>
+        /// <param name="board">The monopoly board as an array of tiles</param>
+        /// <param name="player">The owner</param>
+        /// <returns>Whether the owner owns all tiles from that colorset</returns>
         public bool CheckColorSet(Tile[] board, Player player)
         {
             for (int i = player.GetIndex() - 2; i <=  player.GetIndex() + 2; i++) 

@@ -1,12 +1,14 @@
 using AKM;
 using System.ComponentModel;
 using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AKM
 {
     public partial class GamePage : ContentPage
     {
         public static Player[] playerList;
+        
         GameManagement gameManager;
         public static string[] uploadedImageSources;
         int player1StartingX = -135;
@@ -20,6 +22,7 @@ namespace AKM
 
         int player4StartingX = -135;
         int player4StartingY = -130;
+
 
         public GamePage() //TODO FOR TOMORROW: 1. implement the methods for all buttons. 2. multiple player logic. 3. moving logic. 4. design.
             // 5. dbugging and documentation.
@@ -320,14 +323,19 @@ namespace AKM
         }
         private void HidePlayerInfo()
         {
-            PlayerNameLabel.IsVisible = false;
-            PlayerMoneyLabel.IsVisible = false;
-            Player2NameLabel.IsVisible = false;
-            Player2MoneyLabel.IsVisible = false;
-            Player3NameLabel.IsVisible = false;
-            Player3MoneyLabel.IsVisible = false;
-            Player4NameLabel.IsVisible = false;
-            Player4MoneyLabel.IsVisible = false;
+            Player3Info.IsVisible = false;
+            Player4Info.IsVisible = false;
+            PlayerInfo.IsVisible = true;
+            Player2Info.IsVisible = true;
+            if (gameManager.GetPlayers().Length > 2)
+            {
+                Player3Info.IsVisible = true;
+            }
+            if (gameManager.GetPlayers().Length > 3)
+            { 
+                Player4Info.IsVisible = true;
+            }
+
         }
         private void CreatePlayerInfo(Player[] playerList, string[] uploadedImageSources)
         {
@@ -341,6 +349,7 @@ namespace AKM
 
             if (playerList.Length > 1)
             {
+                Player2Info.IsVisible = true;
                 Player2NameLabel.IsVisible = true;
                 Player2NameLabel.Text = playerList[1].GetName();
                 Player2MoneyLabel.IsVisible = true;
@@ -350,6 +359,7 @@ namespace AKM
 
             if (playerList.Length > 2)
             {
+                Player3Info.IsVisible = true;
                 Player3NameLabel.IsVisible = true;
                 Player3NameLabel.Text = playerList[2].GetName();
                 Player3MoneyLabel.IsVisible = true;
@@ -359,6 +369,7 @@ namespace AKM
 
             if (playerList.Length > 3)
             {
+                Player4Info.IsVisible = true;
                 Player4NameLabel.IsVisible = true;
                 Player4NameLabel.Text = playerList[3].GetName();
                 Player4MoneyLabel.IsVisible = true;
@@ -382,10 +393,19 @@ namespace AKM
             playerIconImage.Source = ImageSource.FromFile(imageSource);
         }
 
-        private void UpdatePlayerInfo() //TODO update current player in the menu with Skip and Roll buttons
+        private void UpdatePlayerInfo() 
         {
-            PlayerMoneyLabel.Text = gameManager.GetCurrentPlayer().GetMoney().ToString();
-            PlayerNameLabel.Text = gameManager.GetCurrentPlayer().GetName();
+            PlayerMoneyLabel.Text = gameManager.GetPlayers()[0].GetMoney().ToString();
+            Player2MoneyLabel.Text = gameManager.GetPlayers()[1].GetMoney().ToString();
+            if (gameManager.GetPlayers().Length > 2)
+            {
+                Player3MoneyLabel.Text = gameManager.GetPlayers()[2].GetMoney().ToString();
+            }
+            if (gameManager.GetPlayers().Length > 3)
+            {
+                Player4MoneyLabel.Text = gameManager.GetPlayers()[3].GetMoney().ToString();
+            }
+            CurrentPlayerLabel.Text = $"Current Player: {gameManager.GetCurrentPlayer().GetName()}";
         }
         private void BuyPropertyButton_Clicked(object sender, EventArgs e)
         {
@@ -444,6 +464,7 @@ namespace AKM
         private void SkipTurnButton_Clicked(object sender, EventArgs e)
         {
             gameManager.SetCurrentPlayer();
+            UpdatePlayerInfo();
             HideBuildMenu();
             HideGoMenu();
             HideSurpriseMenu();
@@ -453,7 +474,7 @@ namespace AKM
             RollDiceButton.IsVisible = true;
         }
         /// <summary>
-        /// 
+        /// Moves the player according to the Pixels on the board image. 
         /// </summary>
         /// <param name="playerIcon"></param>
         /// <param name="player"></param>
@@ -528,8 +549,15 @@ namespace AKM
         {
             MovePlayerOnBoard(MovingPlayer1, gameManager.GetPlayers()[0], gameManager);
             MovePlayerOnBoard(MovingPlayer2, gameManager.GetPlayers()[1], gameManager);
-            MovePlayerOnBoard(MovingPlayer3, gameManager.GetPlayers()[2], gameManager);
-            MovePlayerOnBoard(MovingPlayer4, gameManager.GetPlayers()[3], gameManager);
+            if (gameManager.GetPlayers().Length > 2)
+            {
+                MovePlayerOnBoard(MovingPlayer3, gameManager.GetPlayers()[2], gameManager);
+            }
+            if (gameManager.GetPlayers().Length > 3)
+            {
+                MovePlayerOnBoard(MovingPlayer4, gameManager.GetPlayers()[3], gameManager);
+            }
+            
         }
 
        

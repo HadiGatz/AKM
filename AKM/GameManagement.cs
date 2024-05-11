@@ -24,7 +24,11 @@ namespace AKM
             currentPlayer = players[0];
             rnd = new Random();
         }
-
+        /// <summary>
+        /// Using .Next() it updates the dice members in the class. Then updates the currentDice member,
+        /// and moves the player according to the results.
+        /// </summary>
+        /// <param name="player"></param>
         public void RollDice(Player player)
         {
             dice1 = rnd.Next(1, 7);
@@ -32,7 +36,11 @@ namespace AKM
             currentDice = dice1 + dice2;
             MovePlayer(player, currentDice);
         }
-
+        /// <summary>
+        /// Changes the index of a player, checks if the index exceeds the board limits
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="moveNum"></param>
         public void MovePlayer(Player player, int moveNum)
         {
             player.SetIndex(player.GetIndex() + moveNum % 40);
@@ -81,29 +89,17 @@ namespace AKM
                 new TaxTile(100, "Luxury Tax"),
                 new BuildTile(400, "Boardwalk", 50, 200, 600, 1400, 200, 200, "Blue") };
         }
-        public string ModifyString(string input)
-        {
-            string modifiedString = "";
-
-            foreach (char c in input)
-            {
-                if (char.IsLetter(c))
-                {
-                    modifiedString += c;
-                }
-            }
-
-            modifiedString = modifiedString.ToLower();
-            modifiedString = modifiedString.Replace(" ", "");
-
-            return modifiedString;
-        }
+        /// <summary>
+        /// Called when the current player is in jail. Handles his turn according to the jail rules
+        /// (3 rolls until freedom, double rolling)
+        /// </summary>
+        /// <param name="player"></param>
         public void HandleJailRoll(Player player)
         {
             if (player.GetJailRollsRemaining() > 0)
             {
                 RollDice(player);
-                if (dice1 == dice2)
+                if (dice1 == dice2) // Double rolling sets the player free.
                 {
                     player.SetIsInJail(false);
                     player.SetJailRollsRemaining(0);
@@ -115,7 +111,7 @@ namespace AKM
             }
             else
             {
-                player.SetMoney(player.GetMoney() - 50);
+                player.SetMoney(player.GetMoney() - 50); // The player pays 50 to get out of jail, unwillingly
                 player.SetIsInJail(false);
             }
         }
@@ -235,6 +231,9 @@ namespace AKM
             return players;
         }
         public int GetCurrentDice() { return currentDice; }
+        /// <summary>
+        /// Sets the current player, if the player is the last one on the array it switches to the first one.
+        /// </summary>
         public void SetCurrentPlayer()
         {
             if (Array.IndexOf(players, currentPlayer) == players.Length - 1)
