@@ -64,7 +64,10 @@ namespace AKM
                 owner.SetMoney(owner.GetMoney() + rent);
                 return rent;
             }
-            owner.SetMoney(owner.GetMoney() + startingRent);
+            if (owner != null)
+            {
+                owner.SetMoney(owner.GetMoney() + startingRent);
+            }
             return startingRent;
         }
 

@@ -11,17 +11,7 @@ namespace AKM
         
         GameManagement gameManager;
         public static string[] uploadedImageSources;
-        int player1StartingX = -135;
-        int player1StartingY = -160;
 
-        int player2StartingX = -135;
-        int player2StartingY = -150;
-
-        int player3StartingX = -135;
-        int player3StartingY = -140;
-
-        int player4StartingX = -135;
-        int player4StartingY = -130;
 
 
         public GamePage() //TODO FOR TOMORROW: 1. implement the methods for all buttons. 2. multiple player logic. 3. moving logic. 4. design.
@@ -41,6 +31,7 @@ namespace AKM
             HideTaxMenu();
             HideTrainMenu();
             HideUtilityMenu();
+            HideJailMenu();
             CreateMovingPlayerIcons();
         }
 
@@ -66,6 +57,16 @@ namespace AKM
                 }
             }
         }
+        private void HandleJailTile(JailTile jailTile, Player currentPlayer)
+        {
+            JailLabel.Text = $"You're in jail!\nYou have {currentPlayer.GetJailRollsRemaining()} more turns \nin jail.";
+            JailLabel.IsVisible = true;
+        }
+        private void HandleGoToJailTile(GoToJailTile goToJailTile)
+        {
+            JailLabel.Text = $"Good luck in Jail!";
+            JailLabel.IsVisible = true;
+        }
         private void HandleBuyableBuildTile(BuildTile buildTile)
         {
             BuildTileOwnerNameLabel.IsVisible = true;
@@ -74,19 +75,19 @@ namespace AKM
             BuyHouseOrHotelButton.IsVisible = false;
             RentFineLabel.IsVisible = false;
             CanBuildLabel.IsVisible = false;
-            RentLabel.IsVisible = true;
+            HowMuchRentLabel.IsVisible = true;
             HousesAndHotelsLabel.IsVisible = false;
             HousesAndHotelsLabel.Text = "No Houses/Hotels";
         }
         private void HandleOwnedBuildTile(BuildTile buildTile)
         {
             BuildTileOwnerNameLabel.IsVisible = true;
-            BuildTileOwnerNameLabel.Text = $"The Owner is {buildTile.GetOwner()}.";
+            BuildTileOwnerNameLabel.Text = $"The Owner is {buildTile.GetOwner().GetName()}.";
             BuyPropertyButton.IsVisible = false;
             BuyHouseOrHotelButton.IsVisible = false;
             RentFineLabel.IsVisible = true;
             CanBuildLabel.IsVisible = false;
-            RentLabel.IsVisible = false;
+            HowMuchRentLabel.IsVisible = false;
             HousesAndHotelsLabel.IsVisible = true;
             RentFineLabel.Text = $"Your rent is {buildTile.CalculateRent()}";
         }
@@ -102,7 +103,7 @@ namespace AKM
             CanBuildLabel.IsVisible = true;
             HousesAndHotelsLabel.IsVisible = true;
             HousesAndHotelsLabel.Text = $"{buildTile.GetHouses()} / {buildTile.GetHotels()}";
-            RentLabel.IsVisible = true;
+            HowMuchRentLabel.IsVisible = true;
         }
         private void HandleGoTile()
         {
@@ -128,7 +129,7 @@ namespace AKM
         private void HandleBuyableTrainTile(TrainTile trainTile)
         {
             TrainTileOwnerLabel.IsVisible = true;
-            TrainTileOwnerLabel.Text = $"Owner: No one! You can buy it.&#10; The price is {trainTile.GetPrice()}";
+            TrainTileOwnerLabel.Text = $"Owner: No one! You can buy it\nThe price is {trainTile.GetPrice()}";
             BuyTrainPropertyButton.IsVisible = true;
             TrainRentLabel.IsVisible = false;
         }
@@ -137,7 +138,7 @@ namespace AKM
             TrainTileOwnerLabel.IsVisible = true;
             TrainTileOwnerLabel.Text = $"Owner: {trainTile.GetOwner().GetName()}";
             TrainRentLabel.IsVisible = true;
-            TrainRentLabel.Text = $"Hope you enjoyed the ride!&#10;The bill is {trainTile.CalculateTrainBill(gameManager.GetCurrentPlayer())}";
+            TrainRentLabel.Text = $"Hope you enjoyed the ride!\nThe bill is {trainTile.CalculateTrainBill(gameManager.GetCurrentPlayer())}";
             BuyTrainPropertyButton.IsVisible = false;
         }
         private void HandleOwnedByPlayerTrainTile()
@@ -150,7 +151,7 @@ namespace AKM
         private void HandleBuyableUtilityTile(UtilityTile utilityTile)
         {
             UtilityTileOwnerLabel.IsVisible = true;
-            UtilityTileOwnerLabel.Text = $"Owner: No one! You can buy it.&#10;The price is {utilityTile.GetPrice()}";
+            UtilityTileOwnerLabel.Text = $"Owner: No one! You can buy it\nThe price is {utilityTile.GetPrice()}";
             BuyUtilityPropertyButton.IsVisible = true;
             UtilityRentLabel.IsVisible = false;
         }
@@ -177,7 +178,7 @@ namespace AKM
             BuyHouseOrHotelButton.IsVisible = false;
             RentFineLabel.IsVisible = false;
             CanBuildLabel.IsVisible = false;
-            RentLabel.IsVisible = false;
+            HowMuchRentLabel.IsVisible = false;
             HousesAndHotelsLabel.IsVisible = false;
             BoughtPropertyTileLabel.IsVisible = false;
         }
@@ -209,6 +210,10 @@ namespace AKM
             BuyUtilityPropertyButton.IsVisible = false;
             BoughtPropertyTileLabel.IsVisible = false;
         }
+        private void HideJailMenu()
+        {
+            JailLabel.IsVisible = false;
+        }
        
         private void UpdateTileContent(Tile currentTile)
         {
@@ -219,6 +224,8 @@ namespace AKM
                 HideTaxMenu();
                 HideTrainMenu();
                 HideUtilityMenu();
+                HideJailMenu();
+                HowMuchRentLabel.Text = $"Rent: {buildTile.CalculateRent()}";
                 if (buildTile.GetOwner() == null)
                 {
                     HandleBuyableBuildTile(buildTile);
@@ -232,6 +239,26 @@ namespace AKM
                     HandleOwnedByPlayerBuildTile(buildTile);
                 }
             }
+            else if (currentTile is JailTile jailTile && gameManager.GetCurrentPlayer().GetIsInJail())
+            {
+                HideGoMenu();
+                HideSurpriseMenu();
+                HideTaxMenu();
+                HideTrainMenu();
+                HideBuildMenu();
+                HideUtilityMenu();
+                HandleJailTile(jailTile, gameManager.GetCurrentPlayer());
+            }
+            else if (currentTile is GoToJailTile goToJailTile)
+            {
+                HideGoMenu();
+                HideSurpriseMenu();
+                HideTaxMenu();
+                HideTrainMenu();
+                HideBuildMenu();
+                HideUtilityMenu();
+                HandleGoToJailTile(goToJailTile);
+            }
 
             else if (currentTile is GoTile goTile)
             {
@@ -241,6 +268,7 @@ namespace AKM
                 HideTrainMenu();
                 HandleGoTile();
                 HideUtilityMenu();
+                HideJailMenu();
             }
             else if (currentTile is SurpriseTile surpriseTile)
             {
@@ -249,6 +277,7 @@ namespace AKM
                 HideTaxMenu();
                 HideTrainMenu();
                 HideUtilityMenu();
+                HideJailMenu();
                 HandleSurpriseTile(surpriseTile);
             }
             else if (currentTile is TaxTile taxTile)
@@ -258,6 +287,7 @@ namespace AKM
                 HideTrainMenu();
                 HideUtilityMenu();
                 HideSurpriseMenu();
+                HideJailMenu();
                 HandleTaxTile(taxTile);
             }
             else if (currentTile is UtilityTile utilityTile)
@@ -266,6 +296,7 @@ namespace AKM
                 HideGoMenu();
                 HideTrainMenu();
                 HideTaxMenu();
+                HideJailMenu();
                 HideSurpriseMenu();
                 if (utilityTile.owner == null)
                 {
@@ -286,6 +317,7 @@ namespace AKM
                 HideGoMenu();
                 HideSurpriseMenu();
                 HideTaxMenu();
+                HideJailMenu();
                 HideUtilityMenu();
                 if (trainTile.owner == null)
                 {
@@ -302,7 +334,7 @@ namespace AKM
             }
         }
 
-        private void BuyHouseOrHotelButton_Clicked(object sender, EventArgs e) // change HouseOrHotel to building
+        private void BuyHouseOrHotelButton_Clicked(object sender, EventArgs e) 
         {
             HideBuildMenu();
             if (gameManager.GetBoard()[gameManager.GetCurrentPlayer().GetIndex()] is BuildTile buildTile)
@@ -381,8 +413,15 @@ namespace AKM
         {
             SetPlayerIcon(MovingPlayer1, uploadedImageSources[0]);
             SetPlayerIcon(MovingPlayer2, uploadedImageSources[1]);
-            SetPlayerIcon(MovingPlayer3, uploadedImageSources[2]);
-            SetPlayerIcon(MovingPlayer4, uploadedImageSources[3]);
+            if (playerList.Length > 2)
+            {
+                SetPlayerIcon(MovingPlayer3, uploadedImageSources[2]);
+            }
+            if (playerList.Length > 3)
+            {
+                SetPlayerIcon(MovingPlayer4, uploadedImageSources[3]);
+            }
+            
         }
 
         private void SetPlayerIcon(Image playerIconImage, string imageSource)
@@ -464,6 +503,11 @@ namespace AKM
         private void SkipTurnButton_Clicked(object sender, EventArgs e)
         {
             gameManager.SetCurrentPlayer();
+            if (gameManager.GetCurrentPlayer().GetIsInJail())
+            {
+                gameManager.HandleJailRoll(gameManager.GetCurrentPlayer());
+            }
+            
             UpdatePlayerInfo();
             HideBuildMenu();
             HideGoMenu();

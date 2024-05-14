@@ -28,7 +28,7 @@
                         <Label x:Name="BuildTileOwnerNameLabel" Text="Owner: Player1" IsVisible="true"/>
                         <Label x:Name="CanBuildLabel" Text="Can Build" TextColor="Green"/>
                         <Button x:Name="BuyHouseOrHotelButton" Text="Buy House" BackgroundColor="#FFC300" Padding="10" Clicked="BuyHouseOrHotelButton_Clicked"    />
-                        
+                        <Label x:Name="HowMuchRentLabel" Text="Rent: 200$" />
                         <Button x:Name="BuyPropertyButton" Text="Buy Property" BackgroundColor="Red" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
                         <Label x:Name="RentFineLabel" Text="Your rent is 200$" FontSize="30" TextColor="DarkRed" IsVisible="false"/>
                         <Label x:Name="BoughtPropertyTileLabel" Text="Cong" FontSize="20" TextColor="Green" />
@@ -48,9 +48,11 @@
                         <Label x:Name="UtilityTileOwnerLabel" Text="Owner: " FontSize="15"/>
                         <Label x:Name="UtilityRentLabel" Text="Utilities aren't free, you know. &#10;The bill:" HorizontalTextAlignment="Center" FontSize="15" TextColor="DarkRed" />
                         <Button x:Name="BuyUtilityPropertyButton" Text="Buy Utility" BackgroundColor="red" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
+                        <!-- Jail -->
+                        <Label x:Name="JailLabel" Text="You're in Jail! You'll get out, eventually." TextColor="Red"/>
                     </StackLayout>
                     <StackLayout Spacing="10">
-                        <Label x:Name="RentLabel" Text="Rent: 200$" />
+                        
                         <Label x:Name="HousesAndHotelsLabel" Text="Houses/Hotels: 4/0"/>
                     </StackLayout>
                 </HorizontalStackLayout>

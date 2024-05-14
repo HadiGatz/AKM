@@ -43,7 +43,7 @@ namespace AKM
         /// <param name="moveNum"></param>
         public void MovePlayer(Player player, int moveNum)
         {
-            player.SetIndex(player.GetIndex() + moveNum % 40);
+            player.SetIndex((player.GetIndex() + moveNum) % 40);
         }
         public void InitializeBoard()
         {
