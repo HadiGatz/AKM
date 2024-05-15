@@ -4,118 +4,125 @@
              x:Class="AKM.GamePage"
              Title="GamePage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="AccentColor">#FF4081</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <FlexLayout>
+        <Grid BackgroundColor="#D6F5FF" Padding="10" ColumnSpacing="10" RowSpacing="10">
+            <HorizontalStackLayout>
+                <!-- Monopoly Board-->
 
-    <Grid BackgroundColor="#D6F5FF" Padding="10" ColumnSpacing="10" RowSpacing="10">
-        <HorizontalStackLayout>
-            <!-- Monopoly Board-->
+                <Grid>
 
-            <Grid>
-                
-                <Image Source="monopolyresized.jpg"  Margin="20" HeightRequest="350"/>
-                <Image x:Name ="MovingPlayer1" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-160" />
-                <Image x:Name ="MovingPlayer2" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-150" />
-                <Image x:Name ="MovingPlayer3" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-140" />
-                <Image x:Name ="MovingPlayer4" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-130" />
-                
-            </Grid>
+                    <Image Source="monopolyresized.jpg"  Margin="20" HeightRequest="350"/>
+                    <Image x:Name ="MovingPlayer1" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-160" />
+                    <Image x:Name ="MovingPlayer2" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-150" />
+                    <Image x:Name ="MovingPlayer3" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-140" />
+                    <Image x:Name ="MovingPlayer4" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-130" />
+
+                </Grid>
 
 
-            <StackLayout>
-                
-                <HorizontalStackLayout Spacing="10">
-                    <Image x:Name="CurrentCardImage" Source="{Binding Source={x:Reference CurrentCardImage}, Path=Parent.BindingContext.cardName}" WidthRequest="200" HeightRequest="200" />
-                    <StackLayout Spacing="10">
-                        <!-- Build Menu -->
-                        <Label x:Name="BuildTileOwnerNameLabel" Text="Owner: Player1" IsVisible="true"/>
-                        <Label x:Name="CanBuildLabel" Text="Can Build" TextColor="Green"/>
-                        <Button x:Name="BuyHouseOrHotelButton" Text="Buy House" BackgroundColor="#FFC300" Padding="10" Clicked="BuyHouseOrHotelButton_Clicked"    />
-                        <Label x:Name="HowMuchRentLabel" Text="Rent: 200$" />
-                        <Button x:Name="BuyPropertyButton" Text="Buy Property" BackgroundColor="Red" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
-                        <Label x:Name="RentFineLabel" Text="Your rent is 200$" FontSize="30" TextColor="DarkRed" IsVisible="false"/>
-                        <Label x:Name="BoughtPropertyTileLabel" Text="Cong" FontSize="20" TextColor="Green" />
-                        <!-- Go Tile -->
-                        <Label x:Name="GoTileLabel" Text="Congrats!&#10; You recieved 200$" BackgroundColor="AliceBlue" TextColor="Green" VerticalOptions="Center" FontSize="30"/>
-                        <!-- Surprise/Chest menu -->
-                        <Label x:Name="SurpriseTileLabel" Text="hey" BackgroundColor="AliceBlue" TextColor="Green" FontSize="15" LineBreakMode="WordWrap"  WidthRequest="200" HeightRequest="120" HorizontalTextAlignment="Center"/>
-                        <Label x:Name="SurpriseMoneyLabel" Text="200" TextColor="Red" FontSize="20" HorizontalOptions="Center"/>
-                        <!-- Tax Tile menu -->
-                        <Label x:Name="TaxTextLabel" Text="You have to&#10; pay your taxes :(" FontSize="30" HorizontalOptions="Center" TextColor="DarkRed"/>
-                        <Label x:Name="TaxMoneyLabel" Text="-200$" FontSize="20" HorizontalTextAlignment="Center" TextColor="Red"/>
-                        <!-- Train Tile menu -->
-                        <Label x:Name="TrainTileOwnerLabel" Text="Owner: " FontSize="15"/>
-                        <Label x:Name="TrainRentLabel" Text="Hope you enjoyed the ride!&#10;The bill:  " HorizontalTextAlignment="Center" FontSize="15" TextColor="DarkRed"/>
-                        <Button x:Name="BuyTrainPropertyButton" Text="Buy Train" BackgroundColor="Red" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
-                        <!-- Utility Tile menu -->
-                        <Label x:Name="UtilityTileOwnerLabel" Text="Owner: " FontSize="15"/>
-                        <Label x:Name="UtilityRentLabel" Text="Utilities aren't free, you know. &#10;The bill:" HorizontalTextAlignment="Center" FontSize="15" TextColor="DarkRed" />
-                        <Button x:Name="BuyUtilityPropertyButton" Text="Buy Utility" BackgroundColor="red" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
-                        <!-- Jail -->
-                        <Label x:Name="JailLabel" Text="You're in Jail! You'll get out, eventually." TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Spacing="10">
-                        
-                        <Label x:Name="HousesAndHotelsLabel" Text="Houses/Hotels: 4/0"/>
-                    </StackLayout>
-                </HorizontalStackLayout>
-                
-                <!-- Player Info -->
-                <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Margin="20" Spacing="10">
-                    <!-- Player Details -->
-                    <StackLayout>
-                        <StackLayout x:Name ="PlayerInfo" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
-                            <Image  x:Name="PlayerIconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
-                            <StackLayout VerticalOptions="Center">
-                                <Label x:Name="PlayerNameLabel" Text="Player 1" TextColor="White" FontSize="18" Margin="10,0,0,0" />
-                                <Label x:Name="PlayerMoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
+                <StackLayout>
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="CurrentCardImage" Source="{Binding Source={x:Reference CurrentCardImage}, Path=Parent.BindingContext.cardName}" WidthRequest="200" HeightRequest="200" />
+                        <StackLayout Spacing="10">
+                            <!-- Build Menu -->
+                            <Label x:Name="BuildTileOwnerNameLabel" Text="Owner: Player1" IsVisible="true"/>
+                            <Label x:Name="CanBuildLabel" Text="Can Build" TextColor="Green"/>
+                            <Button x:Name="BuyHouseOrHotelButton" Text="Buy House" BackgroundColor="{StaticResource AccentColor}" Padding="10" Clicked="BuyHouseOrHotelButton_Clicked"    />
+                            <Label x:Name="HowMuchRentLabel" Text="Rent: 200$" />
+                            <Button x:Name="BuyPropertyButton" Text="Buy Property" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
+                            <Label x:Name="RentFineLabel" Text="Your rent is 200$" FontSize="30" TextColor="DarkRed" IsVisible="false"/>
+                            <Label x:Name="BoughtPropertyTileLabel" Text="Cong" FontSize="20" TextColor="Green" />
+                            <!-- Go Tile -->
+                            <Label x:Name="GoTileLabel" Text="Congrats!&#10; You recieved 200$" BackgroundColor="AliceBlue" TextColor="Green" VerticalOptions="Center" FontSize="30"/>
+                            <!-- Surprise/Chest menu -->
+                            <Label x:Name="SurpriseTileLabel" Text="hey" BackgroundColor="AliceBlue" TextColor="Green" FontSize="15" LineBreakMode="WordWrap"  WidthRequest="200" HeightRequest="120" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="SurpriseMoneyLabel" Text="200" TextColor="Red" FontSize="20" HorizontalOptions="Center"/>
+                            <!-- Tax Tile menu -->
+                            <Label x:Name="TaxTextLabel" Text="You have to&#10; pay your taxes :(" FontSize="30" HorizontalOptions="Center" TextColor="DarkRed"/>
+                            <Label x:Name="TaxMoneyLabel" Text="-200$" FontSize="20" HorizontalTextAlignment="Center" TextColor="Red"/>
+                            <!-- Train Tile menu -->
+                            <Label x:Name="TrainTileOwnerLabel" Text="Owner: " FontSize="15"/>
+                            <Label x:Name="TrainRentLabel" Text="Hope you enjoyed the ride!&#10;The bill:  " HorizontalTextAlignment="Center" FontSize="15" TextColor="DarkRed"/>
+                            <Button x:Name="BuyTrainPropertyButton" Text="Buy Train" BackgroundColor="{StaticResource AccentColor}" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
+                            <!-- Utility Tile menu -->
+                            <Label x:Name="UtilityTileOwnerLabel" Text="Owner: " FontSize="15"/>
+                            <Label x:Name="UtilityRentLabel" Text="Utilities aren't free, you know. &#10;The bill:" HorizontalTextAlignment="Center" FontSize="15" TextColor="DarkRed" />
+                            <Button x:Name="BuyUtilityPropertyButton" Text="Buy Utility" BackgroundColor="{StaticResource AccentColor}" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
+                            <!-- Jail -->
+                            <Label x:Name="JailLabel" Text="You're in Jail! You'll get out, eventually." TextColor="Red"/>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+
+                            <Label x:Name="HousesAndHotelsLabel" Text="Houses/Hotels: 4/0"/>
+                        </StackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Player Info -->
+                    <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Margin="20" Spacing="10">
+                        <!-- Player Details -->
+                        <StackLayout>
+                            <StackLayout x:Name ="PlayerInfo" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
+                                <Image  x:Name="PlayerIconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
+                                <StackLayout VerticalOptions="Center">
+                                    <Label x:Name="PlayerNameLabel" Text="Player 1" TextColor="White" FontSize="18" Margin="10,0,0,0" />
+                                    <Label x:Name="PlayerMoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
+                                </StackLayout>
+                                <Button x:Name="PlayerInventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
                             </StackLayout>
-                            <Button x:Name="PlayerInventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
-                        </StackLayout>
-                        
-                        <!-- Player 2 -->
-                        <StackLayout x:Name="Player2Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
-                            <Image x:Name="Player2IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
-                            <StackLayout VerticalOptions="Center">
-                                <Label x:Name="Player2NameLabel" Text="Player 2" TextColor="White" FontSize="18" Margin="10,0,0,0" />
-                                <Label x:Name="Player2MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
-                            </StackLayout>
-                            <Button x:Name="Player2InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
-                        </StackLayout>
-                        <!-- Player 3 -->
-                        <StackLayout  x:Name="Player3Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
-                            <Image x:Name="Player3IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
-                            <StackLayout VerticalOptions="Center">
-                                <Label x:Name="Player3NameLabel" Text="Player 3" TextColor="White" FontSize="18" Margin="10,0,0,0" />
-                                <Label x:Name="Player3MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
-                            </StackLayout>
-                            <Button x:Name="Player3InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
-                        </StackLayout>
-                        <!-- Player 4 -->
-                        <StackLayout x:Name="Player4Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
-                            <Image x:Name="Player4IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
-                            <StackLayout VerticalOptions="Center">
-                                <Label x:Name="Player4NameLabel" Text="Player 4" TextColor="White" FontSize="18" Margin="10,0,0,0" />
-                                <Label x:Name="Player4MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
-                            </StackLayout>
-                            <Button x:Name="Player4InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <!-- Turn Info -->
-                    <StackLayout BackgroundColor="FloralWhite" Padding="10" Margin="0,0,0,0" >
-                        <Label x:Name="CurrentPlayerLabel" Text="Current Player: " HorizontalOptions="Center" FontSize="18" />
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Label x:Name="Dice1Label" Text="Dice 1 = " HorizontalOptions="Start"/>
-                            <Label x:Name="Dice2Label" Text="Dice 2 = " HorizontalOptions="Start"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Button x:Name="RollDiceButton" Text="Roll Dice" BackgroundColor="#FFC300" TextColor="White" FontSize="16" WidthRequest="120" HeightRequest="40" Clicked="RollDiceButton_Clicked"/>
-                            <Button x:Name="SkipTurnButton" Text="Skip Turn" BackgroundColor="#C70039" TextColor="White" FontSize="16" WidthRequest="120" HeightRequest="40" Clicked="SkipTurnButton_Clicked"/>
-                        </StackLayout>
-                    </StackLayout>
-                </HorizontalStackLayout>
-            </StackLayout>
 
-        </HorizontalStackLayout>
-        <!-- Player Icons -->
-        
-    </Grid>
+                            <!-- Player 2 -->
+                            <StackLayout x:Name="Player2Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
+                                <Image x:Name="Player2IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
+                                <StackLayout VerticalOptions="Center">
+                                    <Label x:Name="Player2NameLabel" Text="Player 2" TextColor="White" FontSize="18" Margin="10,0,0,0" />
+                                    <Label x:Name="Player2MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
+                                </StackLayout>
+                                <Button x:Name="Player2InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
+                            </StackLayout>
+                            <!-- Player 3 -->
+                            <StackLayout  x:Name="Player3Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
+                                <Image x:Name="Player3IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
+                                <StackLayout VerticalOptions="Center">
+                                    <Label x:Name="Player3NameLabel" Text="Player 3" TextColor="White" FontSize="18" Margin="10,0,0,0" />
+                                    <Label x:Name="Player3MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
+                                </StackLayout>
+                                <Button x:Name="Player3InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
+                            </StackLayout>
+                            <!-- Player 4 -->
+                            <StackLayout x:Name="Player4Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
+                                <Image x:Name="Player4IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
+                                <StackLayout VerticalOptions="Center">
+                                    <Label x:Name="Player4NameLabel" Text="Player 4" TextColor="White" FontSize="18" Margin="10,0,0,0" />
+                                    <Label x:Name="Player4MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
+                                </StackLayout>
+                                <Button x:Name="Player4InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <!-- Turn Info -->
+                        <StackLayout BackgroundColor="FloralWhite" Padding="10" Margin="0,0,0,0" >
+                            <Label x:Name="CurrentPlayerLabel" Text="Current Player: " HorizontalOptions="Center" FontSize="18" />
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Label x:Name="Dice1Label" Text="Dice 1 = " HorizontalOptions="Start"/>
+                                <Label x:Name="Dice2Label" Text="Dice 2 = " HorizontalOptions="Start"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="RollDiceButton" Text="Roll Dice" BackgroundColor="{StaticResource AccentColor}" TextColor="White" FontSize="16" WidthRequest="120" HeightRequest="40" Clicked="RollDiceButton_Clicked"/>
+                                <Button x:Name="SkipTurnButton" Text="Skip Turn" BackgroundColor="{StaticResource PrimaryColor}" TextColor="White" FontSize="16" WidthRequest="120" HeightRequest="40" Clicked="SkipTurnButton_Clicked"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                </StackLayout>
+
+            </HorizontalStackLayout>
+            <!-- Player Icons -->
+
+        </Grid>
+    </FlexLayout >
 </ContentPage>
