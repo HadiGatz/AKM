@@ -15,6 +15,7 @@ namespace AKM
         private int trainsOwned; // how many tiles of type TrainTile are owned
         private int jailRollsRemaining; // Remaining rolls to get out of jail
         private int doubleCounter = 0;
+        List<Tile> ownedTiles = new List<Tile>();
 
         public Player(string name)
         {
@@ -68,5 +69,30 @@ namespace AKM
         }
         public int GetDoubleCounter() { return doubleCounter; }
         public void SetDoubleCounter(int value) { doubleCounter = value; }
+        public void AddOwnedTile(Tile tile)
+        {
+            if (tile is BuildTile buildTile)
+            {
+                ownedTiles.Add(buildTile);
+            }
+            if (tile is TrainTile trainTile)
+            {
+                ownedTiles.Add(trainTile);
+            }
+            if (tile is UtilityTile utilTile)
+            {
+                ownedTiles.Add(utilTile);
+            }
+        }
+        public string PrintInventory()
+        {
+            string inventory = $"{name} Owns: \n";
+            for (int i = 0; i < ownedTiles.Count; i++)
+            {
+                inventory += $"{ownedTiles[i].GetName()},\n";
+            }
+            inventory += $"His total balance is {money}$";
+            return inventory;
+        }
     }
 }

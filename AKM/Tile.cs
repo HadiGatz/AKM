@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AKM
 {
-    class Tile
+    public class Tile
     {
         protected string name;
         protected string cardName;
@@ -24,5 +24,6 @@ namespace AKM
         { 
             return cardName;
         }
+        
     }
 }

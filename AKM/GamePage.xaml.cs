@@ -101,6 +101,7 @@ namespace AKM
             BuyHouseOrHotelButton.Text = buildTile.GetHouses() == 4 ? "Buy Hotel" : "Buy House";
             RentFineLabel.IsVisible = false;
             CanBuildLabel.IsVisible = true;
+            CanBuildLabel.Text = $"Can Build: {buildTile.GetCanBuild().ToString()}";
             HousesAndHotelsLabel.IsVisible = true;
             HousesAndHotelsLabel.Text = $"{buildTile.GetHouses()} / {buildTile.GetHotels()}";
             HowMuchRentLabel.IsVisible = true;
@@ -453,7 +454,7 @@ namespace AKM
 
             if (currentTile is BuildTile buildTile)
             {
-                bool boughtProperty = buildTile.BuyProperty(currentPlayer);
+                bool boughtProperty = buildTile.BuyProperty(currentPlayer, buildTile);
 
                 if (!boughtProperty)
                 {
@@ -468,7 +469,7 @@ namespace AKM
             }
             else if (currentTile is TrainTile trainTile)
             {
-                bool boughtProperty = trainTile.BuyProperty(currentPlayer);
+                bool boughtProperty = trainTile.BuyProperty(currentPlayer, trainTile);
 
                 if (!boughtProperty)
                 {
@@ -483,7 +484,7 @@ namespace AKM
             }
             else if (currentTile is UtilityTile utilityTile)
             {
-                bool boughtProperty = utilityTile.BuyProperty(currentPlayer);
+                bool boughtProperty = utilityTile.BuyProperty(currentPlayer, utilityTile);
 
                 if (!boughtProperty)
                 {
@@ -502,12 +503,15 @@ namespace AKM
 
         private void SkipTurnButton_Clicked(object sender, EventArgs e)
         {
+
             gameManager.SetCurrentPlayer();
             if (gameManager.GetCurrentPlayer().GetIsInJail())
             {
                 gameManager.HandleJailRoll(gameManager.GetCurrentPlayer());
             }
-            
+            gameManager.GameStateCheck();
+
+
             UpdatePlayerInfo();
             HideBuildMenu();
             HideGoMenu();
@@ -604,6 +608,24 @@ namespace AKM
             
         }
 
-       
+        private void PlayerInventoryButton_Clicked(object sender, EventArgs e)
+        {
+            if (sender == PlayerInventoryButton)
+            {
+                DisplayAlert("Inventory", gameManager.GetPlayers()[0].PrintInventory(), "OK");
+            }
+            if (sender == Player2InventoryButton)
+            {
+                DisplayAlert("Inventory", gameManager.GetPlayers()[1].PrintInventory(), "OK");
+            }
+            if (sender == Player3InventoryButton)
+            {
+                DisplayAlert("Inventory", gameManager.GetPlayers()[2].PrintInventory(), "OK");
+            }
+            if (sender == Player4InventoryButton)
+            {
+                DisplayAlert("Inventory", gameManager.GetPlayers()[3].PrintInventory(), "OK");
+            }
+        }
     }
 }

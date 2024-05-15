@@ -15,13 +15,14 @@ namespace AKM
         {
             this.price = price;
         }
-        public bool BuyProperty(Player player) // Checks if the player owns all train tiles before buying
+        public bool BuyProperty(Player player, TrainTile trainTile) // Checks if the player owns all train tiles before buying
         {
             if (player.GetMoney() >= price && player.GetTrainsOwned() <= 4)
             {
                 player.SetMoney(player.GetMoney() - price);
                 owner = player;
                 owner.SetTrainsOwned(owner.GetTrainsOwned() + 1);
+                owner.AddOwnedTile(trainTile);
                 return true;
             }
             return false;

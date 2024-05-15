@@ -16,6 +16,7 @@
                 <Image x:Name ="MovingPlayer2" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-150" />
                 <Image x:Name ="MovingPlayer3" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-140" />
                 <Image x:Name ="MovingPlayer4" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-130" />
+                
             </Grid>
 
 
@@ -67,8 +68,9 @@
                                 <Label x:Name="PlayerNameLabel" Text="Player 1" TextColor="White" FontSize="18" Margin="10,0,0,0" />
                                 <Label x:Name="PlayerMoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
                             </StackLayout>
+                            <Button x:Name="PlayerInventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
                         </StackLayout>
-                        <!-- Repeat the above stack layout for each player -->
+                        
                         <!-- Player 2 -->
                         <StackLayout x:Name="Player2Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
                             <Image x:Name="Player2IconImage" Source="playericon.jpg" WidthRequest="50" HeightRequest="50" />
@@ -76,6 +78,7 @@
                                 <Label x:Name="Player2NameLabel" Text="Player 2" TextColor="White" FontSize="18" Margin="10,0,0,0" />
                                 <Label x:Name="Player2MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
                             </StackLayout>
+                            <Button x:Name="Player2InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
                         </StackLayout>
                         <!-- Player 3 -->
                         <StackLayout  x:Name="Player3Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
@@ -84,6 +87,7 @@
                                 <Label x:Name="Player3NameLabel" Text="Player 3" TextColor="White" FontSize="18" Margin="10,0,0,0" />
                                 <Label x:Name="Player3MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
                             </StackLayout>
+                            <Button x:Name="Player3InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
                         </StackLayout>
                         <!-- Player 4 -->
                         <StackLayout x:Name="Player4Info" Orientation="Horizontal" BackgroundColor="#202020" Padding="10" WidthRequest="250" HeightRequest="50">
@@ -92,6 +96,7 @@
                                 <Label x:Name="Player4NameLabel" Text="Player 4" TextColor="White" FontSize="18" Margin="10,0,0,0" />
                                 <Label x:Name="Player4MoneyLabel" Text="Money: $1500" TextColor="White" FontSize="16" Margin="10,0,0,0" />
                             </StackLayout>
+                            <Button x:Name="Player4InventoryButton" Text="Inventory" TextColor="White" BackgroundColor="IndianRed" Clicked="PlayerInventoryButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
                     <!-- Turn Info -->

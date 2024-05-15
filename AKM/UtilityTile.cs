@@ -30,12 +30,13 @@ namespace AKM
             }
         }
 
-        public bool BuyProperty(Player player)
+        public bool BuyProperty(Player player, UtilityTile utilTile)
         {
             if (player.GetMoney() >= price)
             {
                 player.SetMoney(player.GetMoney() - price);
                 owner = player;
+                owner.AddOwnedTile(utilTile);
                 return true;
             }
             return false;

@@ -115,12 +115,13 @@ namespace AKM
         /// </summary>
         /// <param name="player">Player who landed on the tile</param>
         /// <returns>Whether the purchase was successful</returns>
-        public bool BuyProperty(Player player)
+        public bool BuyProperty(Player player, BuildTile buildTile)
         {
             if (player.GetMoney() >= price)
             {
                 player.SetMoney(player.GetMoney() - price);
                 owner = player;
+                owner.AddOwnedTile(buildTile);
                 return true;
             }
             return false;

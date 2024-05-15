@@ -136,7 +136,7 @@ namespace AKM
                         buildTile.SetIsAvailable(buildTile.CheckColorSet(board, currentPlayer));
                         if (buildTile.GetIsAvailable())
                         {
-                            buildTile.BuyProperty(currentPlayer);
+                            buildTile.BuyProperty(currentPlayer, buildTile);
                             buildTile.SetIsAvailable(false);
                         }
                         else if (buildTile.GetOwner() != currentPlayer)
@@ -165,7 +165,7 @@ namespace AKM
                     {
                         if (utilityTile.owner == null)
                         {
-                            utilityTile.BuyProperty(currentPlayer);
+                            utilityTile.BuyProperty(currentPlayer, utilityTile);
                         }
                         else if (utilityTile.owner != currentPlayer)
                         {
@@ -176,7 +176,7 @@ namespace AKM
                     {
                         if (trainTile.owner == null)
                         {
-                            trainTile.BuyProperty(currentPlayer);
+                            trainTile.BuyProperty(currentPlayer, trainTile);
                         }
                         else if (trainTile.owner != currentPlayer)
                         {
@@ -186,7 +186,7 @@ namespace AKM
 
                 }
                 GameStateCheck();
-                if (!(dice1 == dice2)) // add: if 3 * double, go to jail
+                if (!(dice1 == dice2)) 
                 {
                     currentPlayer = players[(Array.IndexOf(players, currentPlayer) + 1) % players.Length];
                 }
@@ -245,5 +245,6 @@ namespace AKM
                 currentPlayer = players[Array.IndexOf(players, currentPlayer) + 1];
             }
         }
+        
     }
 }
