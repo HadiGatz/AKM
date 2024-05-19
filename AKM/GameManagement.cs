@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AKM
 {
-    class GameManagement
+    public class GameManagement
     {
         Tile[] board;
         Player[] players;

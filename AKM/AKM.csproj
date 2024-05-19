@@ -54,7 +54,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="TradeWindow.xaml.cs">
+	    <DependentUpon>TradeWindow.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="GamePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TradeWindow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

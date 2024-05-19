@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AKM.TradeWindow"
+             Title="Trade Window">
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Card Image -->
+        <Image x:Name="TileImage" Source="indianaavenue.png" Aspect="AspectFit" HeightRequest="250" Grid.Row="0" HorizontalOptions="Center" Margin="20,20,0,0" />
+
+        <!-- Current Highest Offer Label -->
+        <Label x:Name="HighestOfferLabel" Text="Highest Offer: $500" FontSize="24" HorizontalOptions="End" Margin="0,20,0,0" Grid.Row="0" Grid.Column="1" TextColor="Green"/>
+
+        <!-- Player Menus -->
+        <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="20">
+            <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="20">
+                <!-- Player 1 Menu -->
+                <StackLayout x:Name="Player1Menu" BackgroundColor="#EFEFEF" Padding="10"  WidthRequest="150">
+                    <Label x:Name="Player1Name" Text="Player 1" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label x:Name="Player1Money" Text="Money: $1000" FontSize="16" HorizontalOptions="Center" />
+                    <Button x:Name="Player1Button" Text="Make Offer" FontSize="16" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="5" Clicked="OfferButton_Clicked"/>
+                </StackLayout>
+
+                <!-- Player 2 Menu -->
+                <StackLayout x:Name="Player2Menu" BackgroundColor="#EFEFEF" Padding="10"  WidthRequest="150">
+                    <Label x:Name="Player2Name" Text="Player 2" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label x:Name="Player2Money" Text="Money: $750" FontSize="16" HorizontalOptions="Center" />
+                    <Button x:Name="Player2Button" Text="Make Offer" FontSize="16" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="5" Clicked="OfferButton_Clicked"/>
+                </StackLayout>
+
+                <!-- Player 3 Menu -->
+                <StackLayout x:Name="Player3Menu" BackgroundColor="#EFEFEF" Padding="10"  WidthRequest="150">
+                    <Label x:Name="Player3Name" Text="Player 3" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label x:Name="Player3Money" Text="Money: $500" FontSize="16" HorizontalOptions="Center" />
+                    <Button x:Name="Player3Button" Text="Make Offer" FontSize="16" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="5" Clicked="OfferButton_Clicked"/>
+                </StackLayout>
+
+                <!-- Player 4 Menu -->
+                <StackLayout x:Name="Player4Menu" BackgroundColor="#EFEFEF" Padding="10" WidthRequest="150">
+                    <Label x:Name="Player4Name" Text="Player 4" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label x:Name="Player4Money" Text="Money: $250" FontSize="16" HorizontalOptions="Center" />
+                    <Button x:Name="Player4Button" Text="Make Offer" FontSize="16" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="5" Clicked="OfferButton_Clicked" />
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Return to Game Button -->
+            <Button x:Name="ReturnToGameButton" Text="Return to Game" FontSize="16" BackgroundColor="Red" TextColor="White" CornerRadius="5" Clicked="ReturnToGameButton_Clicked" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

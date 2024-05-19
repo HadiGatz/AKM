@@ -8,8 +8,9 @@ namespace AKM
     public partial class GamePage : ContentPage
     {
         public static Player[] playerList;
+        public static string currentTileName;
         
-        GameManagement gameManager;
+        public static GameManagement gameManager;
         public static string[] uploadedImageSources;
 
 
@@ -24,6 +25,7 @@ namespace AKM
             CurrentPlayerLabel.Text = gameManager.GetCurrentPlayer().GetName();
             CreatePlayerInfo(playerList, uploadedImageSources);
             string imageName = gameManager.GetBoard()[gameManager.GetCurrentPlayer().GetIndex()].GetCardName();
+            currentTileName = imageName;
             CurrentCardImage.Source = $"{imageName}.png";
             HideBuildMenu();
             HideGoMenu();
@@ -77,6 +79,7 @@ namespace AKM
             CanBuildLabel.IsVisible = false;
             HowMuchRentLabel.IsVisible = true;
             HousesAndHotelsLabel.IsVisible = false;
+            TradeButton.IsVisible = true;
             HousesAndHotelsLabel.Text = "No Houses/Hotels";
         }
         private void HandleOwnedBuildTile(BuildTile buildTile)
@@ -182,6 +185,7 @@ namespace AKM
             HowMuchRentLabel.IsVisible = false;
             HousesAndHotelsLabel.IsVisible = false;
             BoughtPropertyTileLabel.IsVisible = false;
+            TradeButton.IsVisible = false;
         }
         private void HideGoMenu()
         {
@@ -626,6 +630,11 @@ namespace AKM
             {
                 DisplayAlert("Inventory", gameManager.GetPlayers()[3].PrintInventory(), "OK");
             }
+        }
+
+        private void TradeButton_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new TradeWindow());
         }
     }
 }

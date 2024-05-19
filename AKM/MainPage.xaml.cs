@@ -9,6 +9,7 @@
         public MainPage()
         {
             InitializeComponent();
+            
         }
         /// <summary>
         /// Updates the Player Array and adds a new player there.

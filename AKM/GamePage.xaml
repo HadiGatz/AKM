@@ -18,10 +18,10 @@
                 <Grid>
 
                     <Image Source="monopolyresized.jpg"  Margin="20" HeightRequest="350"/>
-                    <Image x:Name ="MovingPlayer1" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-160" />
-                    <Image x:Name ="MovingPlayer2" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-150" />
-                    <Image x:Name ="MovingPlayer3" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-140" />
-                    <Image x:Name ="MovingPlayer4" Source="playericon.jpg"  HeightRequest ="10" TranslationX="-135" TranslationY="-130" />
+                    <Image x:Name ="MovingPlayer1" Source="playericon.png"  HeightRequest ="10" TranslationX="-135" TranslationY="-160" />
+                    <Image x:Name ="MovingPlayer2" Source="playericon.png"  HeightRequest ="10" TranslationX="-135" TranslationY="-150" />
+                    <Image x:Name ="MovingPlayer3" Source="playericon.png"  HeightRequest ="10" TranslationX="-135" TranslationY="-140" />
+                    <Image x:Name ="MovingPlayer4" Source="playericon.png"  HeightRequest ="10" TranslationX="-135" TranslationY="-130" />
 
                 </Grid>
 
@@ -37,8 +37,10 @@
                             <Button x:Name="BuyHouseOrHotelButton" Text="Buy House" BackgroundColor="{StaticResource AccentColor}" Padding="10" Clicked="BuyHouseOrHotelButton_Clicked"    />
                             <Label x:Name="HowMuchRentLabel" Text="Rent: 200$" />
                             <Button x:Name="BuyPropertyButton" Text="Buy Property" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="BuyPropertyButton_Clicked"/>
+                            <Button x:Name="TradeButton" Text="Trade" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Clicked="TradeButton_Clicked"/>
                             <Label x:Name="RentFineLabel" Text="Your rent is 200$" FontSize="30" TextColor="DarkRed" IsVisible="false"/>
                             <Label x:Name="BoughtPropertyTileLabel" Text="Cong" FontSize="20" TextColor="Green" />
+                            
                             <!-- Go Tile -->
                             <Label x:Name="GoTileLabel" Text="Congrats!&#10; You recieved 200$" BackgroundColor="AliceBlue" TextColor="Green" VerticalOptions="Center" FontSize="30"/>
                             <!-- Surprise/Chest menu -->
