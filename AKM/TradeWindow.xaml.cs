@@ -7,15 +7,17 @@ namespace AKM
         int highestOffer;
         string currentTileName;
         Player highestOfferPlayer;
+        Player clickedPlayer;
         private GamePage gamePage;
-        public TradeWindow(GamePage gamePage)
+        public TradeWindow(GamePage gamePage, Player clickedPlayer)
         {
             InitializeComponent();
             highestOffer = 0;
-            currentTileName = GamePage.gameManager.GetBoard()[GamePage.gameManager.GetCurrentPlayer().GetIndex()].ToString();
+            currentTileName = GamePage.gameManager.GetBoard()[GamePage.gameManager.GetCurrentPlayer().GetIndex()].GetCardName();
             TileImage.Source = $"{currentTileName}.png";
             CreateUI();
             this.gamePage = gamePage;
+            this.clickedPlayer = clickedPlayer;
         }
         private void CreateUI()
         {
@@ -105,9 +107,13 @@ namespace AKM
         }
         private void ReturnToGameButton_Clicked(object sender, EventArgs e)
         {
+
             if (GamePage.gameManager.GetBoard()[GamePage.gameManager.GetCurrentPlayer().GetIndex()] is BuildTile buildTile)
+            {
+                buildTile.SetPrice(highestOffer);
                 buildTile.BuyProperty(highestOfferPlayer, buildTile);
-            GamePage.gameManager.GetCurrentPlayer().SetMoney(GamePage.gameManager.GetCurrentPlayer().GetMoney() + highestOffer);
+            }
+            clickedPlayer.SetMoney(clickedPlayer.GetMoney() + highestOffer);
             Navigation.PopAsync();
             gamePage.Focus();
             //TODO: find a way to open the game page, fix bug with card picture and bug with incorrect money on player menu

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AKM.TradeWindow"
              Title="Trade Window">
-    <Grid Padding="20">
+    <Grid BackgroundColor="PapayaWhip" Padding="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

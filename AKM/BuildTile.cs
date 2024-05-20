@@ -161,6 +161,7 @@ namespace AKM
         public int GetHotels()
         { return hotels; }
         public int GetPrice() { return price; }
+        public void SetPrice(int price) {  this.price = price; }
 
     }
 }

@@ -11,7 +11,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <FlexLayout>
-        <Grid BackgroundColor="#D6F5FF" Padding="10" ColumnSpacing="10" RowSpacing="10">
+        <Grid BackgroundColor="PapayaWhip" Padding="10" ColumnSpacing="10" RowSpacing="10">
+
             <HorizontalStackLayout>
                 <!-- Monopoly Board-->
 
