@@ -634,7 +634,8 @@ namespace AKM
 
         private void TradeButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new TradeWindow());
+            TradeWindow tradeWindow = new TradeWindow(this);
+            Navigation.PushAsync(tradeWindow);
         }
     }
 }
