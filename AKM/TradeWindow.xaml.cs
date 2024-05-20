@@ -19,6 +19,9 @@ namespace AKM
             this.gamePage = gamePage;
             this.clickedPlayer = clickedPlayer;
         }
+        /// <summary>
+        /// Creates the UI for the trade window, according to the number of players
+        /// </summary>
         private void CreateUI()
         {
             Player3Menu.IsVisible = false;
@@ -43,12 +46,19 @@ namespace AKM
                 Player4Money.Text = $"Money: {GamePage.playerList[3].GetMoney()}";
             }
         }
-
+        /// <summary>
+        /// Updates the highest offer label
+        /// </summary>
         private void UpdateUI()
         {
             HighestOfferLabel.Text = $"The highest Offer\nIs {highestOffer}$";
         }
-
+        /// <summary>
+        /// When the offer button clicked, a display allert is shown
+        /// asking the player to enter their offer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OfferButton_Clicked(object sender, EventArgs e)
         {
             Player clickedPlayer = null;
@@ -105,6 +115,7 @@ namespace AKM
                 UpdateUI();
             }
         }
+        
         private void ReturnToGameButton_Clicked(object sender, EventArgs e)
         {
 
